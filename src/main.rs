@@ -30,19 +30,27 @@ fn main() {
             if args.len() == 4 {
                 //implementation of the add command
                 if command == "add" {
-                    //movements of the money
+                   add(&args, &filename, &directory);
+                }
+            }
+        }
+    }
+}
+
+fn add(args: &Vec<String>, filen: &String, dir: &String) {
+     //movements of the money
                     let movements: isize = args[3].parse().unwrap();
                     //current date utc
                     let date = Utc::today();
 
                     //boolean for knowing if the file already exists or not
-                    let b = std::path::Path::new(&filename).exists();
+                    let b = std::path::Path::new(&filen).exists();
 
                     if b!=true {
-                        std::fs::create_dir_all(format!("/.ehouse/{}",directory)).expect("error creating the dir");
+                        std::fs::create_dir_all(format!("/.ehouse/{}",dir)).expect("error creating the dir");
                         //creating the file if not already existing and writing the first line
 
-                        let mut file1 = std::fs::File::create(&filename.as_str()).expect("create failed");
+                        let mut file1 = std::fs::File::create(&filen.as_str()).expect("create failed");
 
                         file1.write_all(format!("1) {} {}\n",movements, date).as_bytes()).expect("write failed");
 
@@ -55,7 +63,7 @@ fn main() {
                             .read(true)
                             .write(true)
                             .create(true)
-                            .open(&filename)
+                            .open(&filen)
                             .expect("cannot open file");
 
                         //creating the new line
@@ -70,8 +78,5 @@ fn main() {
 
                         println!("Movements added");
                     }
-                }
-            }
-        }
-    }
+
 }
