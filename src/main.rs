@@ -31,6 +31,10 @@ fn main() {
                 //implementation of the add command
                 if command == "add" {
                    add(&args, &filename, &directory);
+                } else if command == "view" {
+
+                } else if command == "remove" {
+
                 }
             }
         }
