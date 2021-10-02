@@ -11,21 +11,22 @@ fn main() {
         //assigning a variable dor the command
         let command: String = args[1].parse().unwrap();
 
-        if args.len() >=3 {
+        if args.len() >= 3 {
             //saving the name of the file in input
             let current_file: String = args[2].parse().unwrap();
 
             //current directory
             let directory: String = args[2].parse().unwrap();
-            directory.replace("_"," ").split_whitespace().nth(0);
+            directory.replace("_", " ").split_whitespace().next();
 
             //name of the file with the right extension
-            let filename: String = String::from(format!("/.ehouse/{}/{}.txt",directory,current_file));
-            
+            let filename: String =
+                format!("/.ehouse/{}/{}.txt", directory, current_file);
+
             if args.len() == 4 {
                 //implementation of the add command
                 if command == "add" {
-                   lib::add(&args, &filename, &directory);
+                    lib::add(&args, &filename, &directory);
                 } else if command == "view" {
 
                 } else if command == "remove" {
@@ -35,4 +36,3 @@ fn main() {
         }
     }
 }
-
