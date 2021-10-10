@@ -8,4 +8,4 @@ edition = "2018"
 [dependencies]
 chrono = "0.4"
 easy_reader = "0.5.1"
-ansi_term = "0.12"
+#colored = "2"

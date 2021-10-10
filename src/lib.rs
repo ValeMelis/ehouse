@@ -1,11 +1,10 @@
 //import of the external crates
 use chrono::prelude::*;
-use ansi_term::Colour::Red;
-use ansi_term::Colour::Green;
 use easy_reader::EasyReader;
 use std::fs::OpenOptions;
 use std::io::Write;
 use std::io::Read;
+//use colored::*;
 
 pub fn add(args: &Vec<String>) {
     //saving the name of the file in input
@@ -37,9 +36,9 @@ pub fn add(args: &Vec<String>) {
             .expect("write failed");
 
         if movements>=0 {
-            println!("1) {}{}",Green.paint(movements.to_string()), date);
+            println!("1) {}{}",movements/*.to_string().green()*/, date);
         } else {
-            println!("1) {}{}",Red.paint(movements.to_string()), date);
+            println!("1) {}{}",movements/*.to_string().red()*/, date);
         }
         
 
@@ -72,9 +71,9 @@ pub fn add(args: &Vec<String>) {
             .expect("write failed");
 
         if movements>=0 {
-            println!("{}) {} {}",n,Green.paint(movements.to_string()), date);
+            println!("{}) {} {}",n,movements/*.to_string().green()*/, date);
         } else {
-            println!("{}) {} {}",n,Red.paint(movements.to_string()), date);
+            println!("{}) {} {}",n,movements/*.to_string().red()*/, date);
         }
 
         println!("Movements added");
@@ -114,9 +113,9 @@ pub fn view(args: &Vec<String>) {
             time=lines.split_whitespace().nth(4).unwrap();
 
             if movements>=0 {
-                println!("{} {} {} {} {}",n,Green.paint(movements.to_string()), day,month,time);
+                println!("{} {} {} {} {}",n,movements/*.to_string().green()*/, day,month,time);
             } else {
-                println!("{} {} {} {} {}",n,Red.paint(movements.to_string()), day,month,time);
+                println!("{} {} {} {} {}",n,movements/*.to_string().red()*/, day,month,time);
             }
 
         }
