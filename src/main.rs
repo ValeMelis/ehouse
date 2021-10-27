@@ -15,10 +15,12 @@ fn main() {
         match command.as_str() {
             "add" => lib::add(&args),
             "view" => lib::view(&args),
+            "total" => lib::total(&args),
             _ => println!("Command not valid\n
                     Enter one of:\n
                     -view to visualize a file\n
-                    -add to add movements"),
+                    -add to add movements\n
+                    -total sum of movements of a file"),
         }
     }
 }
