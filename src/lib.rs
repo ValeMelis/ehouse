@@ -4,6 +4,7 @@ use easy_reader::EasyReader;
 use std::fs::OpenOptions;
 use std::io::Write;
 use std::io::Read;
+use whoami::username;
 //use colored::*;
 
 pub fn add(args: &Vec<String>) {
@@ -16,7 +17,7 @@ pub fn add(args: &Vec<String>) {
         dir = String::from(dir.replace("_", " ").split_whitespace().nth(0).unwrap());
 
         //name of the file with the right extension
-        let filen: String = format!("/.ehouse/{}/{}.txt", dir, current_file);
+        let filen: String = format!("/Users/{}/.ehouse/{}/{}.txt",username(), dir, current_file);
 
         //movements of the money
         let movements: isize = args[3].parse().unwrap();
@@ -27,7 +28,7 @@ pub fn add(args: &Vec<String>) {
         let b = std::path::Path::new(&filen).exists();
 
         if !b {
-            std::fs::create_dir_all(format!("/.ehouse/{}", dir)).expect("error creating the dir");
+            std::fs::create_dir_all(format!("/Users/{}/.ehouse/{}",username(), dir)).expect("error creating the dir");
             //creating the file if not already existing and writing the first line
 
             let mut file1 = std::fs::File::create(&filen).expect("create failed");
@@ -95,7 +96,7 @@ pub fn view(args: &Vec<String>) {
         directory = String::from(directory.replace("_", " ").split_whitespace().nth(0).unwrap());
 
         //name of the file with the right extension
-        let filen: String = format!("/.ehouse/{}/{}.txt", directory, current_file);
+        let filen: String = format!("/Users/{}/.ehouse/{}/{}.txt", username(), directory, current_file);
 
         //let movements: isize = args[3].parse().unwrap();
         let mut file = std::fs::File::open(filen).unwrap();
@@ -139,7 +140,7 @@ pub fn total(args: &Vec<String>) {
         directory = String::from(directory.replace("_", " ").split_whitespace().nth(0).unwrap());
 
         //name of the file with the right extension
-        let filen: String = format!("/.ehouse/{}/{}.txt", directory, current_file);
+        let filen: String = format!("/Users/{}/.ehouse/{}/{}.txt", username(), directory, current_file);
 
         let mut file = match std::fs::File::open(filen) {
             Ok(file) => file,

@@ -8,4 +8,5 @@ edition = "2018"
 [dependencies]
 chrono = "0.4"
 easy_reader = "0.5.1"
+whoami = "1.1.5"
 #colored = "2"
