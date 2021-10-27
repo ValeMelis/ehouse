@@ -32,13 +32,13 @@ pub fn add(args: &Vec<String>) {
         let mut file1 = std::fs::File::create(&filen).expect("create failed");
 
         file1
-            .write_all(format!("1) {}{}\n", movements, date).as_bytes())
+            .write_all(format!("1) {} | {}\n", movements, date).as_bytes())
             .expect("write failed");
 
         if movements>=0 {
-            println!("1) {}{}",movements/*.to_string().green()*/, date);
+            println!("1) {} | {}",movements/*.to_string().green()*/, date);
         } else {
-            println!("1) {}{}",movements/*.to_string().red()*/, date);
+            println!("1) {} | {}",movements/*.to_string().red()*/, date);
         }
         
 
@@ -71,9 +71,9 @@ pub fn add(args: &Vec<String>) {
             .expect("write failed");
 
         if movements>=0 {
-            println!("{}) {} {}",n,movements/*.to_string().green()*/, date);
+            println!("{}) {} | {}",n,movements/*.to_string().green()*/, date);
         } else {
-            println!("{}) {} {}",n,movements/*.to_string().red()*/, date);
+            println!("{}) {} | {}",n,movements/*.to_string().red()*/, date);
         }
 
         println!("Movements added");
