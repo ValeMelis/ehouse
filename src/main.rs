@@ -15,7 +15,10 @@ fn main() {
         match command.as_str() {
             "add" => lib::add(&args),
             "view" => lib::view(&args),
-            _ => println!("Command not valid"),
+            _ => println!("Command not valid\n
+                    Enter one of:\n
+                    -view to visualize a file\n
+                    -add to add movements"),
         }
     }
 }
