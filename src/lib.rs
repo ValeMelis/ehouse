@@ -142,10 +142,7 @@ pub fn total(args: &Vec<String>) {
         //name of the file with the right extension
         let filen: String = format!("/Users/{}/.ehouse/{}/{}.txt", username(), directory, current_file);
 
-        let mut file = match std::fs::File::open(filen) {
-            Ok(file) => file,
-            Err(why) => panic!("File not opened {}",why),
-        };
+        let mut file = std::fs::File::open(filen).expect("File not found");
 
         let mut contents = String::new();
         file.read_to_string(&mut contents).unwrap();
@@ -163,12 +160,31 @@ pub fn total(args: &Vec<String>) {
             }
         }
 
-        if i>1 {
+        if i>=1 {
            println!("The total of the movements of {} is: {}",current_file,total);
         } else {
             println!("The file is empty");
         }    
     } else {
         println!("Number of arguments needed is 2 not {}", args.len()-1);
+    }
+}
+
+pub fn list(args: &Vec<String>) {
+    if args.len() == 3 {
+        //current directory
+        let mut directory: String = args[2].parse().unwrap();
+        directory = String::from(directory.replace("_", " ").split_whitespace().nth(0).unwrap());
+        println!("All the files in {}:",directory);
+
+        let filen: String = format!("/Users/{}/.ehouse/{}", username(), directory);
+
+        let directory = std::fs::read_dir(filen).expect("File not found");
+
+        if directory.is_dir() {
+            for file in directory {
+                println!("{}",file.unwrap().path().display().to_string().replace("/", " ").replace("\\"," ").split_whitespace().nth(4).unwrap());
+            }
+        }
     }
 }
